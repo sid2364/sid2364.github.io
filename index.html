@@ -462,6 +462,116 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* CHATBOT BASE STYLES */
+    .chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-height: 1000px;
+      background-color: var(--section-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      display: none; /* hidden by default */
+      flex-direction: column;
+      z-index: 9999; /* ensure it's on top */
+      transition: all 0.3s ease;
+    }
+
+    .chat-container.open {
+      display: flex;
+    }
+
+    .chat-header {
+      background-color: var(--nav-bg-color);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--nav-shadow-color);
+    }
+
+    .chat-header .chat-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-header .chat-title img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .chat-header .chat-title span {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    .chat-body {
+      padding: 10px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* MESSAGES */
+    .chat-message {
+      max-width: 80%;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .bot-message {
+      background-color: #eee;
+      color: #333;
+      align-self: flex-start;
+    }
+
+    .user-message {
+      background-color: var(--highlight-color);
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    /* PROMPT BUBBLES */
+    .chat-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .prompt-btn {
+      background-color: var(--highlight-color);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .prompt-btn:hover {
+      opacity: 0.8;
+    }
+
   </style>
 </head>
 <body>
@@ -585,7 +695,7 @@
     <div class="job">
       <h3>Nosto Solutions</h3>
       <p>
-        <strong>Software Engineer Team Lead - Client Technology</strong><br>
+        <strong>Software Engineer - Platform & Integrations</strong><br>
         Helsinki, Finland | March 2022 – September 2024
       </p>
       <ul>
@@ -695,6 +805,23 @@
   </div>
 </section>
 
+
+<!-- Chat container must have id="chatContainer" -->
+<div class="chat-container" id="chatContainer">
+  <div class="chat-header" id="chatHeader">
+    <div class="chat-title">
+      <img src="assets/me.jpg" alt="Sid Bot" />
+      <span>Sid</span>
+    </div>
+    <button class="chat-close" id="chatCloseBtn">&times;</button>
+  </div>
+  <!-- The body must have id="chatBody" -->
+  <div class="chat-body" id="chatBody">
+  </div>
+</div>
+
+
+
 <!-- FOOTER -->
 <footer>
   &copy; 2025 Siddharth Sahay
@@ -724,11 +851,173 @@
   });
 </script>
 
+<script>
+  // 1) Select elements
+  const chatContainer = document.getElementById('chatContainer');
+  const chatBody = document.getElementById('chatBody');
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
 
-<!-- Chat Widget Placeholder
-     If you want a chat bubble like Sean's site, sign up for Crisp, Tidio, etc.
-     and paste their JavaScript snippet here. Example:
-     <script src="https://client.crisp.chat/l.js" async></script>
--->
+  // 2) Timer to open the chat after 30 seconds
+  let chatOpenedByTimer = false;
+  const chatTimer = setTimeout(() => {
+    openChat();
+    chatOpenedByTimer = true;
+  }, 30000); // 30 seconds
+
+  // 3) Also open chat when "Contact" link is clicked
+  //    (assuming your "Contact" nav link has href="#contact")
+  const contactLink = document.querySelector('a[href="#contact"]');
+  if (contactLink) {
+    contactLink.addEventListener('click', () => {
+      if (!chatOpenedByTimer) clearTimeout(chatTimer);
+      openChat();
+    });
+  }
+
+  // 4) Close button
+  chatCloseBtn.addEventListener('click', closeChat);
+
+  function openChat() {
+    chatContainer.classList.add('open');
+    if (chatBody.innerHTML.trim() === '') {
+      loadWelcomeMessage();
+    }
+  }
+
+
+  function closeChat() {
+    chatContainer.classList.remove('open');
+  }
+
+  // 5) Conversation logic
+  function loadWelcomeMessage() {
+    // Clear previous
+    chatBody.innerHTML = '';
+
+    // Bot message
+    addBotMessage("Hi! I'm Sid Bot. How can I help you today?");
+
+    // Next possible prompts
+    const prompts = [
+      { label: "Looking for your projects!", next: "portfolio" },
+      { label: "Just saying hello!", next: "hello" },
+      { label: "Where are you based now?", next: "location" },
+      { label: "Interested in mentorship", next: "mentorship" },
+      { label: "Give me a programming quote!", next: "quote" },
+      { label: "We'd like to hire you", next: "hire" },
+    ];
+
+    addPromptButtons(prompts);
+  }
+
+  function addPromptButtons(prompts) {
+    const promptContainer = document.createElement('div');
+    promptContainer.className = 'chat-prompts';
+
+    prompts.forEach((p) => {
+      const btn = document.createElement('button');
+      btn.className = 'prompt-btn';
+      btn.textContent = p.label;
+      btn.addEventListener('click', () => {
+        addUserMessage(p.label);
+        handleResponse(p.next);
+      });
+      promptContainer.appendChild(btn);
+    });
+
+    chatBody.appendChild(promptContainer);
+    chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
+  }
+
+  function handleResponse(type) {
+    switch(type) {
+      case "portfolio":
+        addBotMessage(
+          'All of my projects are on GitHub. Check them out at <a href="https://github.com/sid2364" target="_blank">github.com/sid2364</a>'
+        );
+        addFollowUp();
+        break;
+      case "hello":
+        addBotMessage("Hello! Great to meet you. Welcome to my website!");
+        addFollowUp();
+        break;
+      case "location":
+        addBotMessage("I'm currently based in Brussels, Belgium. But I have lived in India and Finland too!");
+        addFollowUp();
+        break;
+      case "mentorship":
+        addBotMessage("I love helping others. Send me an email or LinkedIn message, and we can take it from there!");
+        addFollowUp();
+        break;
+      case "hire":
+        addBotMessage("That's exciting! Please drop me an email at <b>sahaysid@gmail.com</b> with details. I'd love to learn more!");
+        addFollowUp();
+        break;
+      case "again":
+        loadWelcomeMessage();
+        break;
+      case "quote":
+        // Fetch and display the quote from the API
+        addBotMessage("Hang on a second...");
+        fetchRandomQuote().then(quote => {
+          addBotMessage(quote);
+          addFollowUp();
+        }).catch(err => {
+          addBotMessage("Sorry, I couldn't fetch a quote right now.");
+          addFollowUp();
+        });
+        break;
+      case "end":
+        addBotMessage("Alright, have a great day!");
+        break;
+      default:
+        addBotMessage("Not sure how to respond. Please choose an option.");
+        addFollowUp();
+        break;
+    }
+  }
+
+  function addFollowUp() {
+    const prompts = [
+      { label: "Other options?", next: "again" },
+      { label: "Another time!", next: "end" }
+    ];
+    addPromptButtons(prompts);
+  }
+
+  // 6) Helpers to add messages
+  function addBotMessage(html) {
+    const msg = document.createElement('div');
+    msg.className = 'chat-message bot-message';
+    msg.innerHTML = html; // <--- set HTML instead of textContent
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+
+  function addUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'chat-message user-message';
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+  function fetchRandomQuote() {
+  // Fetch a random quote from the API
+  return fetch('https://programming-quotes-api.azurewebsites.net/api/quotes/random')
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      // Assuming the API returns fields "en" for the quote and "author" for the author.
+      return `"${data.text}" — ${data.author}`;
+    });
+}
+
+</script>
+
+
+
 </body>
 </html>
