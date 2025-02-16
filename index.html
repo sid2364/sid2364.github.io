@@ -4,120 +4,352 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Siddharth Sahay | Resume</title>
-  <!-- Google Fonts for sleek typography -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- AOS: Animate on Scroll CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
-    /* Reset and basic styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Dark theme variables */
+    :root {
+      --bg-color: #121212;
+      --primary-color: #1f1f1f;
+      --accent-color: #007BFF;
+      --text-color: #e0e0e0;
+      --secondary-text: #aaaaaa;
+      --card-bg: #1e1e1e;
     }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
-      padding: 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 30px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      border-radius: 5px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    header h1 {
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-size: 2.5em;
-    }
-    header p {
-      font-size: 1.2em;
-      color: #777;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    section h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      color: #444;
-    }
-    .entry {
-      margin-bottom: 20px;
-    }
-    .entry h3 {
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 5px;
-    }
-    .entry p {
-      margin-bottom: 5px;
-    }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #555;
     }
     a {
-      color: #007BFF;
+      color: var(--accent-color);
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--primary-color);
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      margin: 0 15px;
+    }
+    nav a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    /* Hero Section */
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: var(--secondary-text);
+    }
+    /* Section Titles */
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 10px auto;
+      display: block;
+      border-radius: 2px;
+    }
+    /* Card style for content blocks */
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+    }
+    .card p, .card li {
+      color: var(--text-color);
+    }
+    ul {
+      padding-left: 20px;
+    }
+    /* Flex containers */
+    .container-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .half {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+    .full {
+      width: 100%;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--primary-color);
+      color: var(--secondary-text);
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.8rem;
+      }
+      .half {
+        flex: 1 1 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Siddharth Sahay</h1>
-      <p>Some old tagline</p>
-    </header>
-    
-    <section id="education">
-      <h2>Education</h2>
-      <div class="entry">
-        <h3>University</h3>
-        <p>CS</p>
-        <p>2024 - 2026</p>
-        <p>coursework</p>
-      </div>
-    </section>
-    
-    <section id="work-experience">
-      <h2>Work Experience</h2>
-      <div class="entry">
-        <h3>Nosto</h3>
-        <p>Software Dev</p>
-        <p>2024 - 2026</p>
-        <p>Software</p>
-      </div>
-      <!-- Duplicate .entry divs for multiple work experiences -->
-    </section>
-    
-    <section id="pet-projects">
-      <h2>Pet Projects</h2>
-      <div class="entry">
-        <h3>Teach Me This</h3>
-        <p>Blah Blah</p>
-      </div>
-      <!-- Duplicate .entry divs for more projects -->
-    </section>
-    
-    <footer>
-      <p>Contact: <a href="mailto:sahaysid@gmail.com">sahaysid@gmail.com</a></p>
-    </footer>
+
+<!-- Navigation -->
+<nav data-aos="fade-down">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#coursework">Coursework</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Pet Projects</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<header id="home">
+  <div data-aos="fade-up">
+    <h1>Siddharth Sahay</h1>
+    <p>
+      <a href="http://github.com/sid2364" target="_blank">github.com/sid2364</a> &bull;
+      <a href="mailto:sahaysid@gmail.com">sahaysid@gmail.com</a> &bull; +32 470865109
+    </p>
   </div>
+</header>
+
+<!-- Education Section -->
+<section id="education">
+  <h2 class="section-title" data-aos="fade-right">Education</h2>
+  <div class="card" data-aos="fade-up">
+    <h3><a href="https://www.ulb.be/" target="_blank">Université Libre de Bruxelles (ULB)</a></h3>
+    <p><strong>Master in Computer Science</strong></p>
+    <p>Brussels, Belgium<br>September 2024 - Present</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="100">
+    <h3><a href="https://www.thefrontiers.co/" target="_blank">The Frontiers</a></h3>
+    <p><strong>Engineering Management</strong></p>
+    <p>Kaunas, Lithuania<br>January 2023 - April 2023</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="200">
+    <h3><a href="https://www.thefrontiers.co/" target="_blank">Indian School of Business</a></h3>
+    <p><strong>Product Management</strong></p>
+    <p>Hyderabad, India<br>March 2022 - July 2022</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="300">
+    <h3>Manipal Institute of Technology</h3>
+    <p><strong>BTech in Information Technology</strong></p>
+    <p>Manipal, India<br>July 2012 - 2016</p>
+  </div>
+</section>
+
+<!-- Coursework Section -->
+<section id="coursework">
+  <h2 class="section-title" data-aos="fade-left">Coursework</h2>
+  <div class="card" data-aos="fade-up">
+    <p>
+      <span>&#9679;</span> Evolutionary Game Theory & Learning Dynamics<br>
+      <span>&#9679;</span> Statistical Foundations of Machine Learning<br>
+      <span>&#9679;</span> Big Data: Distributed Data Management and Scalable Analytics<br>
+      <span>&#9679;</span> Swarm Intelligence<br>
+      <span>&#9679;</span> Design & Analysis of Algorithms<br>
+      <span>&#9679;</span> Network Security & Cryptography<br>
+      <span>&#9679;</span> Data Warehousing & Data Mining
+    </p>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+  <h2 class="section-title" data-aos="fade-right">Skills</h2>
+  <div class="card" data-aos="fade-up">
+    <h3>Programming</h3>
+    <p>Java &bull; JavaScript/Typescript (React) &bull; Python &bull; Node.js &bull; PostgreSQL &bull; MongoDB &bull; SQL &bull; Vue.js</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="100">
+    <h3>Technical &amp; Software</h3>
+    <p>AWS &bull; Apache Kafka &bull; Git &bull; RabbitMQ &bull; Docker &bull; Postman &bull; Google Suite</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="200">
+    <h3>Management &amp; Leadership</h3>
+    <p>Scrum &bull; Project Management &bull; Product Strategy &bull; Scrum/Agile Development &bull; Google Analytics &bull; A/B Testing &amp; Experimentation &bull; Product Roadmaps</p>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience">
+  <h2 class="section-title" data-aos="fade-left">Experience</h2>
+  <div class="card" data-aos="fade-up">
+    <h3>Nosto Solutions</h3>
+    <p><strong>Software Engineer Team Lead - Client Technology</strong></p>
+    <p>March 2022 – September 2024 | Helsinki, FINLAND</p>
+    <ul>
+      <li>Led <strong>Nosto's headless offering</strong> launch using an <a href="https://github.com/Nosto/nosto-react" target="_blank">open-source React-component library</a> with Typescript</li>
+      <li>Designed and developed scalable back-end server library and APIs for serving recommendations using Java and RESTful best practices</li>
+      <li>Collaborated with cross-functional teams for Shopify and Bigcommerce platform solutions</li>
+      <li>Developed a React front-end library achieving full feature parity with the primary product suite</li>
+      <li>Managed a 4-engineer team backlog and executed product roadmaps</li>
+      <li>Utilized customer feedback to simplify APIs and add new features</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="100">
+    <h3>Goldman Sachs</h3>
+    <p><strong>Vice President - FICC Systematic Market Making Strategist - Global Markets Division</strong></p>
+    <p>June 2018 – February 2022 | Bangalore, INDIA</p>
+    <ul>
+      <li>Created algorithmic trading applications and post-trade STP flows for FICC Interest Rate Products</li>
+      <li>Enhanced an in-house Java-based trade message routing and processing technology stack</li>
+      <li>Implemented real-time high-volume trade reconciliation using Apache Kafka queues</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="200">
+    <h3>Altair Engineering</h3>
+    <p><strong>Software Development Engineer</strong></p>
+    <p>January 2016 – May 2018 | Bangalore, INDIA</p>
+    <ul>
+      <li>Maintained and improved the <a href="https://github.com/openpbs/openpbs" target="_blank">open-source code base</a> for PBS Pro, an HPC workload manager</li>
+      <li>Served as scrum master for a five-engineer team in an Agile workflow</li>
+      <li>Leveraged Machine Learning techniques to enhance PBS Pro Scheduler for improved performance</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Research Section -->
+<section id="research">
+  <h2 class="section-title" data-aos="fade-right">Research Work</h2>
+  <div class="card" data-aos="fade-up">
+    <h3>Hybrid Data Mining Algorithm with Pincer-Search in Cloud Computing using MapReduce Framework Based on Hadoop</h3>
+    <p>January 2016 - March 2016 | Manipal Institute of Technology, Manipal</p>
+    <ul>
+      <li>Presented at IEEE International Conference on Advanced Communication, Control and Computing Technologies (ICACCCT ’16) – <a href="http://ieeexplore.ieee.org/document/7831691/" target="_blank">DOI: 10.1109/ICACCCT.2016.7831691</a></li>
+      <li>Accepted by Springer Nature Emerging Research in Computing, Information, Communication and Applications (ERCICA ’16)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Pet Projects Section -->
+<section id="projects">
+  <h2 class="section-title" data-aos="fade-left">Pet Projects</h2>
+  <div class="card" data-aos="fade-up">
+    <h3>Teach Me This</h3>
+    <ul>
+      <li>Developed a Python-based Retrieval Augmented Generation (RAG) system atop an open-source LLM for live PDF querying</li>
+      <li>Utilized HuggingFace's library and LanceDB as a chunk database</li>
+      <li>Enabled local use of the LLM to avoid third-party API dependencies</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="100">
+    <h3>Grammar Checker Chatbot</h3>
+    <ul>
+      <li>Developed a Python chatbot for grammar support that corrects errors, suggests improvements, and explains common mistakes</li>
+      <li>Integrated Dialogflow (API AI) with Flask, hosted on Heroku</li>
+      <li>Aided language learners and reduced teacher workload</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="200">
+    <h3>PyZork</h3>
+    <ul>
+      <li>Created a text-based adventure game in Python using NLP techniques based on a context-free grammar and JSON map</li>
+      <li>Implemented NLP to interpret user actions for dynamic in-game responses</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="300">
+    <h3>CryptoWatch</h3>
+    <ul>
+      <li>Developed an Android app to monitor cryptocurrency prices with customizable alerts</li>
+      <li>Simplified live tracking of price movements for users</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="400">
+    <h3>Television Segment</h3>
+    <ul>
+      <li>Built a Machine Learning model in Python using Tensorflow and Pandas to group customers by watch patterns</li>
+      <li>Achieved 86% accuracy in customer segmentation</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="500">
+    <h3>Top Trending Hash Tags</h3>
+    <ul>
+      <li>Developed a Python utility to suggest relevant hashtags for words, titles, or tweets</li>
+      <li>Enhanced content searchability and reach</li>
+    </ul>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="600">
+    <h3>Finding Waldo</h3>
+    <ul>
+      <li>Developed a Machine Learning model with YOLO v2 and CNNs to locate Waldo</li>
+      <li>Achieved nearly 70% accuracy even with partial visibility</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer data-aos="fade-up">
+  <p>&copy; 2025 Siddharth Sahay. All Rights Reserved.</p>
+</footer>
+
+<!-- AOS: Animate on Scroll JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
 </body>
 </html>
-
