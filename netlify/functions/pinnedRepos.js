@@ -1,6 +1,17 @@
-// netlify/functions/pinnedRepos.js
+exports.handler = async (event, context) => {
+  // Handle preflight OPTIONS requests
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+      },
+      body: ''
+    };
+  }
 
-exports.handler = async () => {
   const query = `
     query {
       user(login: "sid2364") {
@@ -25,7 +36,6 @@ exports.handler = async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // We'll use an environment variable for your GitHub token
         'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`
       },
       body: JSON.stringify({ query })
@@ -34,24 +44,24 @@ exports.handler = async () => {
     if (!response.ok) {
       return {
         statusCode: response.status,
+        headers: { 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify({ error: 'GitHub API request failed' })
       };
     }
 
     const data = await response.json();
-
-    // Extract just the pinned repos
     const pinned = data.data.user.pinnedItems.edges.map(edge => edge.node);
 
     return {
       statusCode: 200,
-      body: JSON.stringify(pinned) // return array of pinned repos
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify(pinned)
     };
   } catch (err) {
     return {
       statusCode: 500,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ error: err.message })
     };
   }
 };
-

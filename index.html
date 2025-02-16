@@ -9,6 +9,23 @@
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
           rel="stylesheet"
   />
+  <script defer>
+    fetch('https://lighthearted-khapse-d494e3.netlify.app/.netlify/functions/pinnedRepos')
+      .then(res => res.json())
+      .then(repos => {
+        console.log('Pinned repos:', repos);
+        const container = document.getElementById('pinnedProjects');
+        repos.forEach(repo => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
+            <p>${repo.description || 'No description'}</p>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => console.error('Error fetching pinned repos:', err));
+  </script>
   <style>
     /*
       THEME VARIABLES
@@ -734,63 +751,65 @@
 <!-- PROJECTS -->
 <section class="projects-section" id="projects">
   <h2>Projects</h2>
-  <div class="projects-grid">
-    <!-- Example Project 1 -->
-    <div class="project-card">
-      <img
-              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=Teach+Me+This"
-              alt="Teach Me This project screenshot"
-      />
-      <div class="content">
-        <h3>Teach Me This</h3>
-        <p>
-          A Python-based Retrieval Augmented Generation (RAG) system atop an open-source LLM
-          for live PDF querying.
-        </p>
-      </div>
-    </div>
-    <!-- Example Project 2 -->
-    <div class="project-card">
-      <img
-              src="https://via.placeholder.com/400x200/007BFF/ffffff?text=Grammar+Checker+Chatbot"
-              alt="Grammar Checker Chatbot screenshot"
-      />
-      <div class="content">
-        <h3>Grammar Checker Chatbot</h3>
-        <p>
-          A Python chatbot that corrects grammar errors and provides suggestions,
-          using Dialogflow (API AI) and Flask.
-        </p>
-      </div>
-    </div>
-    <!-- Example Project 3 -->
-    <div class="project-card">
-      <img
-              src="https://via.placeholder.com/400x200/f7ab6c/ffffff?text=PyZork"
-              alt="PyZork screenshot"
-      />
-      <div class="content">
-        <h3>PyZork</h3>
-        <p>
-          A text-based adventure game in Python, featuring NLP for interpreting user actions.
-        </p>
-      </div>
-    </div>
-    <!-- Example Project 4 -->
-    <div class="project-card">
-      <img
-              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=CryptoWatch"
-              alt="CryptoWatch screenshot"
-      />
-      <div class="content">
-        <h3>CryptoWatch</h3>
-        <p>
-          An Android app that monitors cryptocurrency prices with customizable alerts.
-        </p>
-      </div>
-    </div>
-    <!-- Add more project cards as needed -->
-  </div>
+  <div id="pinnedProjects"></div>
+
+  <!--  <div class="projects-grid">-->
+<!--    &lt;!&ndash; Example Project 1 &ndash;&gt;-->
+<!--    <div class="project-card">-->
+<!--      <img-->
+<!--              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=Teach+Me+This"-->
+<!--              alt="Teach Me This project screenshot"-->
+<!--      />-->
+<!--      <div class="content">-->
+<!--        <h3>Teach Me This</h3>-->
+<!--        <p>-->
+<!--          A Python-based Retrieval Augmented Generation (RAG) system atop an open-source LLM-->
+<!--          for live PDF querying.-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Example Project 2 &ndash;&gt;-->
+<!--    <div class="project-card">-->
+<!--      <img-->
+<!--              src="https://via.placeholder.com/400x200/007BFF/ffffff?text=Grammar+Checker+Chatbot"-->
+<!--              alt="Grammar Checker Chatbot screenshot"-->
+<!--      />-->
+<!--      <div class="content">-->
+<!--        <h3>Grammar Checker Chatbot</h3>-->
+<!--        <p>-->
+<!--          A Python chatbot that corrects grammar errors and provides suggestions,-->
+<!--          using Dialogflow (API AI) and Flask.-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Example Project 3 &ndash;&gt;-->
+<!--    <div class="project-card">-->
+<!--      <img-->
+<!--              src="https://via.placeholder.com/400x200/f7ab6c/ffffff?text=PyZork"-->
+<!--              alt="PyZork screenshot"-->
+<!--      />-->
+<!--      <div class="content">-->
+<!--        <h3>PyZork</h3>-->
+<!--        <p>-->
+<!--          A text-based adventure game in Python, featuring NLP for interpreting user actions.-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Example Project 4 &ndash;&gt;-->
+<!--    <div class="project-card">-->
+<!--      <img-->
+<!--              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=CryptoWatch"-->
+<!--              alt="CryptoWatch screenshot"-->
+<!--      />-->
+<!--      <div class="content">-->
+<!--        <h3>CryptoWatch</h3>-->
+<!--        <p>-->
+<!--          An Android app that monitors cryptocurrency prices with customizable alerts.-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Add more project cards as needed &ndash;&gt;-->
+<!--  </div>-->
 </section>
 
 <!-- CONTACT -->
@@ -1016,8 +1035,5 @@
 }
 
 </script>
-
-
-
 </body>
 </html>
