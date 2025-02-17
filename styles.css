@@ -36,7 +36,7 @@
   --grad-end: #101010;
   --text-color: #f0f0f0;
   --heading-color: #ffffff;
-  --highlight-color: #86c9f0;
+  --highlight-color: #2c3e50;
   --nav-text-color: #f0f0f0;
   --nav-bg-color: rgba(30, 30, 30, 0.9);
   --nav-shadow-color: rgba(0, 0, 0, 0.6);
@@ -620,7 +620,7 @@ footer {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 300px;
+  width: 350px;
   max-height: 600px;
   background-color: var(--section-bg);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 5);
@@ -726,8 +726,8 @@ footer {
 }
 
 :root.dark {
-  --prompt-btn-bg: #86c9f0;
-  --prompt-btn-text: #000;
+  --prompt-btn-bg: #2c3e50;
+  --prompt-btn-text: #fff;
 }
 
 .prompt-btn {
@@ -893,4 +893,95 @@ body {
   );
   background-size: 120% 120%;
   animation: darkGreenShift 10s ease-in-out infinite;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  /* Navigation: stack items vertically */
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Hero Section: scale down image and adjust heading sizes */
+  .hero img {
+    width: 250px;
+    height: 250px;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Reduce padding in major sections to avoid excessive whitespace */
+  .hero,
+  .about-section,
+  .education-section,
+  .work-experience-section,
+  .projects-section,
+  .contact-section {
+    padding: 4rem 1rem;
+  }
+
+  /* Chat container: adjust width and positioning for smaller screens */
+  .chat-container {
+    width: 90%;
+    right: 5%;
+    bottom: 10px;
+  }
+}
+
+/* Default (desktop/larger screens) */
+.hamburger {
+  display: none; /* hidden by default on large screens */
+}
+#navMenu {
+  display: flex; /* show nav inline by default */
+}
+#navMenu ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* For screens up to 768px (mobile) */
+@media (max-width: 768px) {
+  /* Show the hamburger, hide the nav by default */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px; /* spacing between lines */
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--nav-text-color); /* or another color */
+  }
+
+  #navMenu {
+    display: none; /* hidden by default on mobile */
+    position: absolute;
+    top: 60px; /* or adjust as needed */
+    right: 0;
+    flex-direction: column;
+    background: var(--nav-bg-color);
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  #navMenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Show nav when toggled */
+  #navMenu.show {
+    display: flex;
+  }
 }

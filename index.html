@@ -57,7 +57,15 @@
 <header>
   <div class="nav-container">
     <div class="logo">Siddharth Sahay</div>
-    <nav>
+
+    <!-- Hamburger icon (hidden on large screens) -->
+    <div class="hamburger" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navMenu">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
@@ -83,7 +91,7 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <img src="assets/me.jpg" alt="ME" />
-  <h1>Hi, I'm Sid!<br>A Software Engineer.</h1><h2>I am a technology enthusiast, lifelong learner<br> and part-time philosopher.</h2>
+  <h1>Hi, I'm Sid!<br>A Software Engineer.</h1><h2>I am a technology enthusiast, lifelong learner<br> and part-time amateur philosopher.</h2>
   <p></p>
 
   <!-- SCROLL CTA -->
@@ -498,7 +506,26 @@
       return `"${data.text}" — ${data.author}`;
     });
 }
-
 </script>
+<script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navMenu = document.getElementById('navMenu');
+
+  // 1) Toggle the menu when the hamburger is clicked
+  hamburgerBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+
+  // 2) Close menu if user clicks outside nav or hamburger
+  document.addEventListener('click', (e) => {
+    // If the menu is open AND the click target is not inside navMenu or hamburgerBtn
+    if (navMenu.classList.contains('show') &&
+        !navMenu.contains(e.target) &&
+        !hamburgerBtn.contains(e.target)) {
+      navMenu.classList.remove('show');
+    }
+  });
+</script>
+
 </body>
 </html>
