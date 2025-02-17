@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Siddharth Sahay</title>
-  <!-- Google Fonts -->
-  <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-          rel="stylesheet"
-  />
+  <title>Siddharth Sahay | Software Engineer</title>
+<!--  <link-->
+<!--          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"-->
+<!--          rel="stylesheet"-->
+<!--  />-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/acorn.woff" as='font' type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/gt.woff" as='font' type="font/woff" crossorigin>
   <script defer>
     fetch('https://lighthearted-khapse-d494e3.netlify.app/.netlify/functions/pinnedRepos')
       .then(res => res.json())
@@ -24,8 +27,8 @@
           // Wrap the content in an anchor tag that spans the entire tile
           tile.innerHTML = `
             <a href="${repo.url}" target="_blank" class="tile-link">
-              <h3>${repo.name}</h3>
-              <p>${repo.description || 'No description'}</p>
+              <h3>&#x2197; ${repo.name}</h3>
+              <p>${repo.description || '...'}</p>
             </a>
           `;
           container.appendChild(tile);
@@ -46,733 +49,7 @@
       .catch(err => console.error('Error fetching pinned repos:', err));
 
   </script>
-  <style>
-    /*
-      THEME VARIABLES
-      Light mode in :root,
-      Dark mode overrides in :root.dark
-    */
-    :root {
-      --grad-start: #c5efc6;
-      --grad-end: #ffffdb;
-      --text-color: #2b2b2b;
-      --heading-color: #2b2b2b;
-      --highlight-color: #2e864e;
-      --nav-text-color: #2b2b2b;
-      --nav-bg-color: rgba(255, 255, 255, 0.8);
-      --nav-shadow-color: rgba(0, 0, 0, 0.1);
-      --section-bg: #ffffff;
-    }
-    /* DARK THEME OVERRIDES */
-    :root.dark {
-      --grad-start: #242424;
-      --grad-end: #101010;
-      --text-color: #f0f0f0;
-      --heading-color: #ffffff;
-      --highlight-color: #86c9f0;
-      --nav-text-color: #f0f0f0;
-      --nav-bg-color: rgba(30, 30, 30, 0.9);
-      --nav-shadow-color: rgba(0, 0, 0, 0.6);
-      --section-bg: #1e1e1e;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, var(--grad-start), var(--grad-end));
-      color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* NAVIGATION */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--nav-bg-color);
-      box-shadow: 0 2px 4px var(--nav-shadow-color);
-      z-index: 999;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    .nav-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    nav a {
-      text-decoration: none;
-      font-weight: 500;
-      color: var(--nav-text-color);
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: var(--highlight-color);
-    }
-    /* THEME TOGGLE BUTTON */
-    #theme-toggle {
-      border: none;
-      background: var(--highlight-color);
-      color: #fff;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    #theme-toggle:hover {
-      opacity: 0.9;
-    }
-
-    .theme-switch {
-      position: relative;
-      display: inline-block;
-      width: 45px;
-      height: 24px;
-    }
-
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0; /* top, right, bottom, left = 0 */
-      background-color: var(--highlight-color);
-      border-radius: 34px;
-      transition: background-color 0.4s;
-    }
-
-    .slider:before {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: #fff;
-      border-radius: 50%;
-      transition: transform 0.4s;
-    }
-
-    /* When the checkbox is checked, move the slider dot to the right */
-    input:checked + .slider {
-      background-color: #ccc; /* Adjust for your dark mode highlight color */
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .theme-switch {
-      position: relative;
-      display: inline-block;
-      width: 45px;
-      height: 24px;
-    }
-
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0; /* equivalent to top:0; right:0; bottom:0; left:0; */
-      background-color: var(--highlight-color);
-      border-radius: 34px;
-      transition: background-color 0.4s;
-    }
-
-    /* The sliding dot */
-    .slider:before {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: #fff;
-      border-radius: 50%;
-      transition: transform 0.4s;
-    }
-
-    /* Icon styles */
-    .theme-switch .icon {
-      position: absolute;
-      font-size: 14px;
-      color: #fff;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-    .theme-switch .icon-light {
-      left: 6px;
-    }
-    .theme-switch .icon-dark {
-      right: 6px;
-    }
-
-    :root.dark a {
-      color: #86c9f0; /* or any color you prefer in dark mode */
-      text-decoration: none;
-    }
-
-    :root.dark a:hover,
-    :root.dark a:focus,
-    :root.dark a:active {
-      color: #b0dcff; /* a lighter or slightly different hover color */
-      text-decoration: underline; /* optional to show it's a link on hover */
-    }
-
-    /* If you want visited links to match as well */
-    :root.dark a:visited {
-      color: #86c9f0;
-    }
-
-
-    /* Move the dot when toggled */
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    /* Optional: change slider background on toggle */
-    input:checked + .slider {
-      background-color: #ccc;
-    }
-
-    #pinnedProjects {
-      /* Use CSS Grid to display tiles */
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto; /* center the grid on the page */
-      padding: 1rem;
-    }
-
-    /* The link spans all columns */
-    .more-link {
-      grid-column: 1 / -1;   /* Span from first column to last */
-      text-align: center;
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-
-    .repo-tile {
-      background-color: #ffffff; /* adjust if you have a dark theme */
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s ease;
-      cursor: pointer;
-    }
-
-    :root.dark .repo-tile {
-      background-color: #3b3b3b;     /* or var(--section-bg), etc. */
-      color: var(--text-color);      /* ensures text is the usual light color */
-    }
-
-    /* Also ensure any child text or link inherits that color */
-    :root.dark .repo-tile h3,
-    :root.dark .repo-tile p {
-      color: inherit;
-    }
-
-    :root.dark .repo-tile a.tile-link {
-      color: inherit;                /* keeps link text from turning white on white */
-      text-decoration: none;
-    }
-
-    .repo-tile:hover {
-      transform: translateY(-3px);
-    }
-
-    .repo-tile h3 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .repo-tile p {
-      margin: 10px 0;
-      font-size: 0.9rem;
-      color: #333; /* adjust for your theme */
-    }
-
-    .repo-stars {
-      font-size: 0.8rem;
-      color: #666;
-    }
-
-
-    /* HERO SECTION */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1rem;
-      transition: background 0.3s;
-    }
-    .hero img {
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--highlight-color);
-      margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      line-height: 1.2;
-      color: var(--heading-color);
-      margin-bottom: 1rem;
-      transition: color 0.3s;
-    }
-    .hero p {
-      max-width: 600px;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-      color: var(--text-color);
-      transition: color 0.3s;
-    }
-
-    /* ABOUT SECTION */
-    .about-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
-    }
-    .about-section h2 {
-      font-size: 2.2rem;
-      color: var(--heading-color);
-      margin-bottom: 1rem;
-      transition: color 0.3s;
-    }
-    .about-section p {
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-      color: var(--text-color);
-      margin-bottom: 2rem;
-      transition: color 0.3s;
-    }
-
-    /* EDUCATION SECTION */
-    .education-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-    .education-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .education-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      row-gap: 1.5rem;
-      transition: color 0.3s;
-    }
-    .school h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .school p {
-      color: var(--text-color);
-      font-size: 0.95rem;
-      line-height: 1.4;
-      transition: color 0.3s;
-    }
-
-    /* WORK EXPERIENCE SECTION */
-    .work-experience-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-      text-align: center;
-      background: var(--section-bg);
-      transition: background 0.3s, color 0.3s;
-    }
-    .work-experience-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .work-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .job {
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      text-align: left;
-      padding: 1.5rem;
-      transition: background 0.3s, color 0.3s;
-    }
-    :root.dark .job {
-      background: #3b3b3b;
-      color: var(--text-color);
-    }
-    .job h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.3rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .job p {
-      color: var(--text-color);
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: 0.5rem;
-      transition: color 0.3s;
-    }
-    .job ul {
-      list-style: disc inside;
-      margin-top: 0.5rem;
-    }
-
-    /* PROJECTS SECTION */
-    .projects-section {
-      padding: 3rem 1rem;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
-    }
-    .projects-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .projects-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .project-card {
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: transform 0.3s, background 0.3s, color 0.3s;
-      text-align: left;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-    :root.dark .project-card {
-      background: #2b2b2b;
-      color: var(--text-color);
-    }
-    .project-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-    .project-card .content {
-      padding: 1rem;
-    }
-    .project-card .content h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .project-card .content p {
-      font-size: 0.9rem;
-      color: var(--text-color);
-      line-height: 1.4;
-      transition: color 0.3s;
-    }
-
-    /* CONTACT SECTION */
-    .contact-section {
-      padding: 3rem 1rem;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
-    }
-    .contact-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--heading-color);
-      transition: color 0.3s;
-    }
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 1rem;
-      color: var(--text-color);
-      align-items: center;
-      transition: color 0.3s;
-    }
-    .contact-details a {
-      color: var(--highlight-color);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .contact-details a:hover {
-      text-decoration: underline;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-color);
-      transition: color 0.3s;
-    }
-
-    /* MEDIA QUERIES */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      nav ul {
-        gap: 1rem;
-      }
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* CHATBOT BASE STYLES */
-    .chat-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      max-height: 1000px;
-      background-color: var(--section-bg);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
-      overflow: hidden;
-      display: none; /* hidden by default */
-      flex-direction: column;
-      z-index: 9999; /* ensure it's on top */
-      transition: all 0.3s ease;
-    }
-
-    .chat-container.open {
-      display: flex;
-    }
-
-    .chat-header {
-      background-color: var(--nav-bg-color);
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--nav-shadow-color);
-    }
-
-    .chat-header .chat-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .chat-header .chat-title img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .chat-header .chat-title span {
-      color: var(--heading-color);
-      font-weight: 600;
-    }
-
-    .chat-close {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-
-    .chat-body {
-      padding: 10px;
-      overflow-y: auto;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* MESSAGES */
-    .chat-message {
-      max-width: 80%;
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-
-    .bot-message {
-      background-color: #eee;
-      color: #333;
-      align-self: flex-start;
-    }
-
-    .user-message {
-      background-color: var(--highlight-color);
-      color: #fff;
-      align-self: flex-end;
-    }
-
-    /* PROMPT BUBBLES */
-    .chat-prompts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 5px;
-    }
-
-    .prompt-btn {
-      background-color: var(--highlight-color);
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    :root {
-      --prompt-btn-bg: var(--highlight-color);
-      --prompt-btn-text: #fff;
-    }
-
-    :root.dark {
-      --prompt-btn-bg: #86c9f0;
-      --prompt-btn-text: #000;
-    }
-
-    .prompt-btn {
-      background-color: var(--prompt-btn-bg);
-      color: var(--prompt-btn-text);
-    }
-
-
-    .prompt-btn:hover {
-      opacity: 0.8;
-    }
-
-    .scroll-cta {
-      /* Center the icon in a circle */
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-
-      /* Use your highlight color, or keep it transparent with a border */
-      background-color: var(--highlight-color);
-      color: #fff; /* ensure contrast */
-
-      text-decoration: none; /* remove underline */
-      transition: background-color 0.3s, transform 0.3s;
-      margin-top: 30px; /* some spacing above */
-      margin-bottom: 0px;  /* increase this for more space below */
-    }
-
-    :root.dark .scroll-cta {
-      background-color: #86c9f0; /* or any other contrasting color */
-      color: #000;              /* arrow will be black if stroke is currentColor */
-    }
-
-    .scroll-cta:hover {
-      /* Slight hover effect */
-      background-color: #033; /* or darken var(--highlight-color) */
-      transform: translateY(+20px);
-    }
-
-    .scroll-cta svg {
-      /* Ensure the icon fits nicely within the circle */
-      width: 30px;
-      height: 30px;
-      stroke: currentColor;
-    }
-
-    .tile-link {
-      display: block;        /* entire tile is clickable */
-      color: inherit;        /* use parent color instead of default link color */
-      text-decoration: none; /* remove underline */
-    }
-
-    /* Override visited, hover, focus, active, etc. */
-    .tile-link:visited,
-    .tile-link:hover,
-    .tile-link:focus,
-    .tile-link:active {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Optional subtle hover effect */
-    .tile-link:hover {
-      opacity: 0.9;
-    }
-
-    /* If you want the tile to show a pointer on hover */
-    .repo-tile {
-      cursor: pointer;
-    }
-
-
-
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -805,19 +82,12 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
+  <img src="assets/me.jpg" alt="ME" />
+  <h1>Hi, I'm Sid!<br>A Software Engineer.</h1><h2>I am a technology enthusiast, lifelong learner<br> and part-time philosopher.</h2>
+  <p></p>
 
-
-  <img src="assets/me.jpg" alt="Profile photo of Siddharth" />
-  <h1>Hi, I'm Siddharth!</h1>
-  <p><em>A technology enthusiast, lifelong learner, and part-time philosopher.</em></p>
-  <!-- Some blank space for the user to scroll down -->
-
-<!--  <p>-->
-<!--    I'm passionate about creating experiences that are engaging, accessible,-->
-<!--    and user-centric.-->
-<!--  </p>-->
-<!--  <div style="margin-top: 2rem;"></div>-->
-  <a href="#about" class="scroll-cta">
+  <!-- SCROLL CTA -->
+  <a href="#about" class="scroll-cta" >
     <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -834,26 +104,40 @@
       <polyline points="19 12 12 19 5 12"></polyline>
     </svg>
   </a>
-
-
 </section>
 
 <!-- ABOUT -->
 <section class="about-section" id="about">
   <h2>About Me</h2>
   <p>
-    I'm a software engineer currently pursuing a Master's in Computer Science at ULB in Brussels.
-    Over the years, I've worked at companies like Goldman Sachs and Nosto, where I built and led a variety of projects.
-    I specialize in Java, Python, and React, among other technologies, and I'm deeply interested in AI, Data Science, and everything in between.
-    My master’s coursework focuses on Computational Intelligence and Data Science, and my thesis explores Knowledge Graphs and Drug Repurposing. As I make progress, I'll be sure to share more details here.
+    I'm a <b class="rainbow">Software Engineer with 8+ years of experience</b>, currently pursuing a Master's degree in <b class="rainbow">Computer Science</b>
+    at <b class="rainbow">Université Libre de Bruxelles (ULB)</b> in Brussels.
+    Over the years, I've worked at companies like <b class="rainbow">Goldman Sachs</b> and <b class="rainbow">Nosto</b>, where I built and led a variety of projects.
+    I specialize in <b class="rainbow">Java, Python, and React</b>, among other technologies, and I'm deeply interested in <b class="rainbow">AI, Data Science, and everything in between.</b>
+    My master’s coursework focuses on <b class="rainbow">Computational Intelligence and Data Science</b>, and my thesis explores <b class="rainbow">Knowledge Graphs and Drug Repurposing</b>. As I make progress, I'll be sure to share more details here.
   </p>
-<!--  <p>-->
-<!--    I'm always looking for new challenges and opportunities to grow. -->
-<!--  </p>-->
   <p>
-    Outside of coding, I enjoy music, chess, and exploring topics like philosophy and linguistics.
+    Outside of coding, I enjoy <b class="rainbow">music</b>, <b class="rainbow">chess</b>, and exploring topics like <b class="rainbow">philosophy</b> and <b class="rainbow">linguistics</b>.
     I'm always eager to learn and experiment with new ideas. <br><br>Please feel free to reach out if you'd like to chat or collaborate!
   </p>
+  <!-- SCROLL CTA -->
+  <a href="#education" class="scroll-cta" >
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-down"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </a>
 </section>
 
 <!-- EDUCATION -->
@@ -889,6 +173,25 @@
       </p>
     </div>
   </div>
+  <br><br>
+  <!-- SCROLL CTA -->
+  <a href="#work" class="scroll-cta" >
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-down"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </a>
 </section>
 
 <!-- WORK EXPERIENCE -->
@@ -932,70 +235,50 @@
       </ul>
     </div>
   </div>
+  <br><br>  <br><br>
+
+  <a href="#projects" class="scroll-cta" >
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-down"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </a>
 </section>
 
 <!-- PROJECTS -->
 <section class="projects-section" id="projects">
   <h2>Projects</h2>
   <div id="pinnedProjects"></div>
+  <br><br>  <br><br>
 
-  <!--  <div class="projects-grid">-->
-<!--    &lt;!&ndash; Example Project 1 &ndash;&gt;-->
-<!--    <div class="project-card">-->
-<!--      <img-->
-<!--              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=Teach+Me+This"-->
-<!--              alt="Teach Me This project screenshot"-->
-<!--      />-->
-<!--      <div class="content">-->
-<!--        <h3>Teach Me This</h3>-->
-<!--        <p>-->
-<!--          A Python-based Retrieval Augmented Generation (RAG) system atop an open-source LLM-->
-<!--          for live PDF querying.-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Example Project 2 &ndash;&gt;-->
-<!--    <div class="project-card">-->
-<!--      <img-->
-<!--              src="https://via.placeholder.com/400x200/007BFF/ffffff?text=Grammar+Checker+Chatbot"-->
-<!--              alt="Grammar Checker Chatbot screenshot"-->
-<!--      />-->
-<!--      <div class="content">-->
-<!--        <h3>Grammar Checker Chatbot</h3>-->
-<!--        <p>-->
-<!--          A Python chatbot that corrects grammar errors and provides suggestions,-->
-<!--          using Dialogflow (API AI) and Flask.-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Example Project 3 &ndash;&gt;-->
-<!--    <div class="project-card">-->
-<!--      <img-->
-<!--              src="https://via.placeholder.com/400x200/f7ab6c/ffffff?text=PyZork"-->
-<!--              alt="PyZork screenshot"-->
-<!--      />-->
-<!--      <div class="content">-->
-<!--        <h3>PyZork</h3>-->
-<!--        <p>-->
-<!--          A text-based adventure game in Python, featuring NLP for interpreting user actions.-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Example Project 4 &ndash;&gt;-->
-<!--    <div class="project-card">-->
-<!--      <img-->
-<!--              src="https://via.placeholder.com/400x200/2e864e/ffffff?text=CryptoWatch"-->
-<!--              alt="CryptoWatch screenshot"-->
-<!--      />-->
-<!--      <div class="content">-->
-<!--        <h3>CryptoWatch</h3>-->
-<!--        <p>-->
-<!--          An Android app that monitors cryptocurrency prices with customizable alerts.-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Add more project cards as needed &ndash;&gt;-->
-<!--  </div>-->
+  <a href="#contact" class="scroll-cta" >
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-down"
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </a>
 </section>
 
 <!-- CONTACT -->
@@ -1010,8 +293,7 @@
   </div>
 </section>
 
-
-<!-- Chat container must have id="chatContainer" -->
+<!-- CHAT WIDGET -->
 <div class="chat-container" id="chatContainer">
   <div class="chat-header" id="chatHeader">
     <div class="chat-title">
@@ -1024,7 +306,6 @@
   <div class="chat-body" id="chatBody">
   </div>
 </div>
-
 
 
 <!-- FOOTER -->
@@ -1057,19 +338,19 @@
 </script>
 
 <script>
-  // 1) Select elements
+  // Select elements
   const chatContainer = document.getElementById('chatContainer');
   const chatBody = document.getElementById('chatBody');
   const chatCloseBtn = document.getElementById('chatCloseBtn');
 
-  // 2) Timer to open the chat after 30 seconds
+  // Timer to open the chat after 45 seconds
   let chatOpenedByTimer = false;
   const chatTimer = setTimeout(() => {
     openChat();
     chatOpenedByTimer = true;
-  }, 30000); // 30 seconds
+  }, 45000); // 45 seconds
 
-  // 3) Also open chat when "Contact" link is clicked
+  // Also open chat when "Contact" link is clicked
   //    (assuming your "Contact" nav link has href="#contact")
   const contactLink = document.querySelector('a[href="#contact"]');
   if (contactLink) {
@@ -1079,7 +360,7 @@
     });
   }
 
-  // 4) Close button
+  // Close button
   chatCloseBtn.addEventListener('click', closeChat);
 
   function openChat() {
@@ -1089,12 +370,11 @@
     }
   }
 
-
   function closeChat() {
     chatContainer.classList.remove('open');
   }
 
-  // 5) Conversation logic
+  // Conversation logic
   function loadWelcomeMessage() {
     // Clear previous
     chatBody.innerHTML = '';
@@ -1190,7 +470,7 @@
     addPromptButtons(prompts);
   }
 
-  // 6) Helpers to add messages
+  // Helpers to add messages
   function addBotMessage(html) {
     const msg = document.createElement('div');
     msg.className = 'chat-message bot-message';
@@ -1198,7 +478,6 @@
     chatBody.appendChild(msg);
     chatBody.scrollTop = chatBody.scrollHeight;
   }
-
 
   function addUserMessage(text) {
     const msg = document.createElement('div');
@@ -1221,26 +500,5 @@
 }
 
 </script>
-
-<!--<script>-->
-<!--  window.addEventListener('scroll', () => {-->
-<!--  const scrollTop = window.scrollY;-->
-<!--  const docHeight = document.body.scrollHeight - window.innerHeight;-->
-<!--  const scrollPercent = scrollTop / docHeight;-->
-
-<!--  // Interpolate between two or more colors-->
-<!--  // Example: from #c5e2c6 (light green) to #fff9db (light yellow)-->
-<!--  const startColor = [197, 226, 198]; // RGB for #c5e2c6-->
-<!--  const endColor = [255, 249, 219];   // RGB for #fff9db-->
-
-<!--  const currentColor = startColor.map((start, i) => {-->
-<!--    const end = endColor[i];-->
-<!--    return Math.round(start + (end - start) * scrollPercent);-->
-<!--  });-->
-
-<!--  document.body.style.background = `rgb(${currentColor.join(',')})`;-->
-<!--});-->
-
-<!--</script>-->
 </body>
 </html>
