@@ -257,13 +257,13 @@ input:checked + .slider {
   background-color: #ffffff; /* adjust if you have a dark theme */
   border-radius: 8px;
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
 :root.dark .repo-tile {
-  background-color: #3b3b3b;     /* or var(--section-bg), etc. */
+  background-color: #2c3e50;     /* or var(--section-bg), etc. */
   color: var(--text-color);      /* ensures text is the usual light color */
 }
 
@@ -478,13 +478,13 @@ font-family: 'Acorn', sans-serif;
 .job {
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
   text-align: left;
   padding: 1.5rem;
   transition: background 0.3s, color 0.3s;
 }
 :root.dark .job {
-  background: #3b3b3b;
+  background: #2c3e50;
   color: var(--text-color);
 }
 .job h3 {
@@ -537,7 +537,7 @@ font-family: 'Acorn', sans-serif;
   transform: translateY(-5px);
 }
 :root.dark .project-card {
-  background: #2b2b2b;
+  background: #2c3e50;
   color: var(--text-color);
 }
 .project-card img {
@@ -859,9 +859,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
 @keyframes darkGreenShift {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 10%;
     background-size: 120% 120%;
   }
   25% {
@@ -886,10 +887,10 @@ body {
   background: linear-gradient(
     -45deg,
     #2c3e50 0%,    /* dark grey-blue */
-    #1e5631 33%,   /* deep dark green */
-    #34495e 66%,   /* lighter dark grey-blue */
-    #1e5631 100%   /* repeat deep dark green */
+    #203040 33%,   /* a deeper, more neutral blue-grey */
+    #1f1f1f 99%,   /* lighter dark grey-blue */
+    #0f0f0f 100%   /* deep, dark blue-grey */
   );
   background-size: 120% 120%;
-  animation: darkGreenShift 15s ease-in-out infinite;
+  animation: darkGreenShift 10s ease-in-out infinite;
 }
