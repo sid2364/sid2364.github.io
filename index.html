@@ -56,7 +56,7 @@
 <!-- NAV -->
 <header>
   <div class="nav-container">
-    <div class="logo">Siddharth Sahay</div>
+    <a href="#home" id="navigation"><div class="logo">Siddharth Sahay</div></a>
 
     <!-- Hamburger icon (hidden on large screens) -->
     <div class="hamburger" id="hamburgerBtn">
@@ -118,16 +118,29 @@
 <section class="about-section" id="about">
   <h2>About Me</h2>
   <p>
-    I'm a <b class="rainbow">Software Engineer with 8+ years of experience</b>, currently pursuing a Master's degree in <b class="rainbow">Computer Science</b>
-    at <b class="rainbow">Université Libre de Bruxelles (ULB)</b> in Brussels.
-    Over the years, I've worked at companies like <b class="rainbow">Goldman Sachs</b> and <b class="rainbow">Nosto</b>, where I built and led a variety of projects.
-    I specialize in <b class="rainbow">Java, Python, and React</b>, among other technologies, and I'm deeply interested in <b class="rainbow">AI, Data Science, and everything in between.</b>
-    My master’s coursework focuses on <b class="rainbow">Computational Intelligence and Data Science</b>, and my thesis explores <b class="rainbow">Knowledge Graphs and Drug Repurposing</b>. As I make progress, I'll be sure to share more details here.
+    I'm a <b class="rainbow">Software Engineer with 8+ years of experience</b>, currently pursuing a <b class="rainbow">Master’s in Computer Science</b>
+    at <b class="rainbow">Université Libre de Bruxelles (ULB)</b> in Brussels. Over the years, I’ve worked at companies like
+    <b class="rainbow">Goldman Sachs</b> and <b class="rainbow">Nosto</b>, where I built and led a variety of projects focused on
+    <b class="rainbow">backend development, distributed systems, and cloud-native architectures</b>.
   </p>
   <p>
-    Outside of coding, I enjoy <b class="rainbow">music</b>, <b class="rainbow">chess</b>, and exploring topics like <b class="rainbow">philosophy</b> and <b class="rainbow">linguistics</b>.
-    I'm always eager to learn and experiment with new ideas. <br><br>Please feel free to reach out if you'd like to chat or collaborate!
+    I specialise in <b class="rainbow">Java backend development</b>, working extensively with <b class="rainbow">Spring Boot</b>,
+    <b class="rainbow">Microservices</b>, <b class="rainbow">Kubernetes</b>, and <b class="rainbow">PostgreSQL</b>, along with
+    <b>Python</b> for data-driven applications. My expertise spans <b class="rainbow">RESTful APIs</b>, <b class="rainbow">event-driven architectures</b>
+    (<b>Kafka, RabbitMQ</b>), <b class="rainbow">CI/CD pipelines</b>, and <b class="rainbow">cloud platforms</b> (<b>AWS, GCP</b>).
+    <b class="rainbow">Performance optimization</b> and <b class="rainbow">scalable system design</b> are core to my work.
   </p>
+  <p>
+    Beyond backend engineering, I’m deeply interested in <b class="rainbow">AI, Data Science, and everything in between</b>.
+    My master’s coursework focuses on <b class="rainbow">Computational Intelligence and Data Science</b>, while my thesis explores
+    <b class="rainbow">Knowledge Graphs and Drug Repurposing</b>.
+  </p>
+  <p>
+    Outside of coding, I enjoy <b class="rainbow">music</b>, <b class="rainbow">chess</b>, and exploring topics like <b class="rainbow">philosophy</b>
+    and <b class="rainbow">linguistics</b>. I'm always eager to learn, experiment with new ideas, and collaborate on interesting projects.
+    <br><br>Please feel free to reach out if you'd like to chat or collaborate!
+  </p>
+
   <!-- SCROLL CTA -->
   <a href="#education" class="scroll-cta" >
     <svg
@@ -268,7 +281,7 @@
 <section class="projects-section" id="projects">
   <h2>Projects</h2>
   <div id="pinnedProjects"></div>
-  <br><br>  <br><br>
+  <br><br>
 
   <a href="#contact" class="scroll-cta" >
     <svg
@@ -292,12 +305,12 @@
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <h2>Contact</h2>
-  <p>Interested in chatting or hiring me?</p>
+  <p>Interested in collaborating, or hiring me?</p>
   <div class="contact-details">
-    <span><strong>Email:</strong> <a href="mailto:sahaysid@gmail.com">sahaysid@gmail.com</a></span>
-    <span><strong>Phone:</strong> +32 470865109</span>
-    <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/siddharth-sahay/" target="_blank">linkedin.com/in/siddharth-sahay</a></span>
-    <span><strong>GitHub:</strong> <a href="https://github.com/sid2364" target="_blank">github.com/sid2364</a></span>
+    <span>Email: <a href="mailto:sahaysid@gmail.com">sahaysid@gmail.com</a></span><span>Phone: +32 470865109</span><br><br>
+    <span><a href="https://www.linkedin.com/in/siddharth-sahay/" target="_blank">LinkedIn</a> |
+    <span><a href="https://github.com/sid2364" target="_blank">GitHub</a> |
+    <span><a href="https://scholar.google.com/citations?hl=en&user=YkyHjTwAAAAJ" target="_blank">Google Scholar</a></span>
   </div>
 </section>
 
@@ -393,7 +406,7 @@
     // Next possible prompts
     const prompts = [
       { label: "Looking for your projects", next: "portfolio" },
-      { label: "Just saying hello!", next: "hello" },
+      { label: "Just saying hello", next: "hello" },
       { label: "Where are you based now?", next: "location" },
       { label: "Interested in mentorship", next: "mentorship" },
       { label: "Give me a programming quote", next: "quote" },

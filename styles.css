@@ -413,7 +413,7 @@ font-family: 'Acorn', sans-serif;
   margin: 0 auto;
   line-height: 1.6;
   color: var(--text-color);
-  margin-bottom: 4rem;
+  margin-bottom: 1.6rem;
   transition: color 0.3s;
   font-size: 1.3rem;
 }
@@ -984,4 +984,18 @@ body {
   #navMenu.show {
     display: flex;
   }
+}
+
+
+/* Remove the default underline */
+#navigation {
+    text-decoration: none;
+    color: inherit; /* Ensures it takes the default text color */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Optional hover effect */
+#navigation:hover {
+    color: #ff4500; /* Change to any color you like */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
