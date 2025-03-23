@@ -417,7 +417,7 @@
       { label: "Just saying hello", next: "hello" },
       { label: "Where are you based now?", next: "location" },
       { label: "Interested in mentorship", next: "mentorship" },
-      { label: "Give me a programming quote", next: "quote" },
+      { label: "Give me a random quote", next: "quote" },
       { label: "We'd like to hire you!", next: "hire" },
     ];
 
@@ -517,14 +517,18 @@
   }
   function fetchRandomQuote() {
   // Fetch a random quote from the API
-  return fetch('https://programming-quotes-api.azurewebsites.net/api/quotes/random')
+  return fetch('https://api.api-ninjas.com/v1/quotes', {
+      headers: {
+        'X-Api-Key': '8PV0eZlvRFyKQOybQA+uyg==UFO8zGqqxhLQEecr'
+      }
+    })
     .then(response => {
       if (!response.ok) throw new Error('Network response was not ok');
       return response.json();
     })
     .then(data => {
-      // Assuming the API returns fields "en" for the quote and "author" for the author.
-      return `"${data.text}" — ${data.author}`;
+      const { quote, author, type } = data[0];
+      return `"${quote}" — ${author}`;
     });
 }
 </script>
