@@ -360,10 +360,13 @@
   const storedTheme = localStorage.getItem('theme');
   const toggleCheckbox = document.getElementById('theme-toggle-checkbox');
 
-  // If storedTheme is 'dark', set .dark class and check the switch
-  if (storedTheme === 'dark') {
+  // If no stored preference, default to dark
+  if (!storedTheme || storedTheme === 'dark') {
     document.documentElement.classList.add('dark');
     toggleCheckbox.checked = true;
+  } else {
+    document.documentElement.classList.remove('dark');
+    toggleCheckbox.checked = false;
   }
 
   // Listen for switch changes
@@ -373,9 +376,10 @@
       localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.removeItem('theme');
+      localStorage.setItem('theme', 'light');
     }
   });
+
 </script>
 
 <script>
